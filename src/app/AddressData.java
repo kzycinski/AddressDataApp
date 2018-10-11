@@ -1,13 +1,15 @@
 /**
+ * @author Krystian Życiński
+ */
+package app;
+
+/**
  * AddressData class, needs to be a storage for city, postal code, street and building number
  * Building number has to be greater than 0
  * City name has to start with capital letter
  * Postal code has to be in XX-XXX format
  * Every field has to be initialized
- *
- * @author Krystian Życiński
  */
-package app;
 
 public class AddressData {
     private final int buildingNumber;
@@ -20,6 +22,14 @@ public class AddressData {
         this.postalCode = postalCode;
         this.street = street;
         this.city = city;
+    }
+
+    @Override
+    public String toString() {
+        return ("City: " + this.getCity() +
+                "\nPostal Code: " + this.getPostalCode() +
+                "\nStreet: " + this.getStreet() +
+                "\nBuilding number: " + this.getBuildingNumber());
     }
 
     public int getBuildingNumber() {

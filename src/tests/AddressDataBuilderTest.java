@@ -1,6 +1,4 @@
 /**
- * Tests for AddressDataBuilder class
- *
  * @author Krystian Życiński
  */
 package tests;
@@ -8,118 +6,122 @@ package tests;
 import app.AddressDataBuilder;
 import org.junit.Test;
 
+/**
+ *   Tests for AddressDataBuilder class
+ */
+
 public class AddressDataBuilderTest {
     private AddressDataBuilder addressDataBuilder = new AddressDataBuilder();
 
     @Test(expected = NullPointerException.class)
     public void testCityNameIsNull() {
-        addressDataBuilder.setCity(null);
+        addressDataBuilder.withCity(null);
     }
 
     @Test(expected = NullPointerException.class)
     public void testStreetIsNull() {
-        addressDataBuilder.setStreet(null);
+        addressDataBuilder.withStreet(null);
     }
 
     @Test(expected = NullPointerException.class)
     public void testPostalCodeIsNull() {
-        addressDataBuilder.setPostalCode(null);
+        addressDataBuilder.withPostalCode(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testBuildingNumberIsZero() {
-        addressDataBuilder.setBuildingNumber(0);
+        addressDataBuilder.withBuildingNumber(0);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testBuildingNumberIsNegative() {
-        addressDataBuilder.setBuildingNumber(-10);
+        addressDataBuilder.withBuildingNumber(-10);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testTooLongPostalCode() {
-        addressDataBuilder.setPostalCode("12-3456");
+        addressDataBuilder.withPostalCode("12-3456");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testPostalCodeWithoutPause() {
-        addressDataBuilder.setPostalCode("123456");
+        addressDataBuilder.withPostalCode("123456");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testLettersInPostalCode() {
-        addressDataBuilder.setPostalCode("12-34a");
+        addressDataBuilder.withPostalCode("12-34a");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCityNameStartsWithSmallLetter() {
-        addressDataBuilder.setCity("city");
+        addressDataBuilder.withCity("city");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCityNameIsEmptyString() {
-        addressDataBuilder.setCity("");
+        addressDataBuilder.withCity("");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testStreetNameIsEmptyString() {
-        addressDataBuilder.setCity("");
+        addressDataBuilder.withStreet("");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testPostalCodeIsEmptyString() {
-        addressDataBuilder.setCity("");
+        addressDataBuilder.withPostalCode("");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testBuildWithoutSettingAnything() {
-        AddressDataBuilder tmp = new AddressDataBuilder();
-        tmp.build();
+        AddressDataBuilder addressDataBuilder = new AddressDataBuilder();
+        addressDataBuilder.build();
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testBuildWithoutSettingBuildingNumber() {
-        AddressDataBuilder tmp = new AddressDataBuilder();
-        tmp.setPostalCode("12-345")
-                .setCity("City")
-                .setStreet("Street")
+        AddressDataBuilder addressDataBuilder = new AddressDataBuilder();
+        addressDataBuilder.withPostalCode("12-345")
+                .withCity("City")
+                .withStreet("Street")
                 .build();
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testBuildWithoutSettingCity() {
-        AddressDataBuilder tmp = new AddressDataBuilder();
-        tmp.setPostalCode("12-345")
-                .setBuildingNumber(10)
-                .setStreet("Street")
+        AddressDataBuilder addressDataBuilder = new AddressDataBuilder();
+        addressDataBuilder.withPostalCode("12-345")
+                .withBuildingNumber(10)
+                .withStreet("Street")
                 .build();
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testBuildWithoutSettingStreet() {
-        AddressDataBuilder tmp = new AddressDataBuilder();
-        tmp.setPostalCode("12-345")
-                .setCity("City")
-                .setBuildingNumber(10)
+        AddressDataBuilder addressDataBuilder = new AddressDataBuilder();
+        addressDataBuilder.withPostalCode("12-345")
+                .withCity("City")
+                .withBuildingNumber(10)
                 .build();
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testBuildWithoutSettingPostalCode() {
-        AddressDataBuilder tmp = new AddressDataBuilder();
-        tmp.setBuildingNumber(10)
-                .setCity("City")
-                .setStreet("Street")
+        AddressDataBuilder addressDataBuilder = new AddressDataBuilder();
+        addressDataBuilder.withBuildingNumber(10)
+                .withCity("City")
+                .withStreet("Street")
                 .build();
     }
 
     @Test
     public void testBuildWithCorrectData() {
-        AddressDataBuilder tmp = new AddressDataBuilder();
-        tmp.setBuildingNumber(10)
-                .setPostalCode("12-345")
-                .setStreet("Street")
-                .setCity("City")
+        AddressDataBuilder addressDataBuilder = new AddressDataBuilder();
+        addressDataBuilder.withBuildingNumber(10)
+                .withPostalCode("12-345")
+                .withStreet("Street")
+                .withCity("City")
                 .build();
     }
 }
