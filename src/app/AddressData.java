@@ -1,14 +1,9 @@
-/**
- * @author Krystian Życiński
- */
 package app;
 
 /**
+ * @author Krystian Życiński
  * AddressData class, needs to be a storage for city, postal code, street and building number
- * Building number has to be greater than 0
- * City name has to start with capital letter
- * Postal code has to be in XX-XXX format
- * Every field has to be initialized
+ * @see app.AddressDataBuilder
  */
 
 public class AddressData {
@@ -30,6 +25,10 @@ public class AddressData {
                 "\nPostal Code: " + this.getPostalCode() +
                 "\nStreet: " + this.getStreet() +
                 "\nBuilding number: " + this.getBuildingNumber());
+    }
+
+    public static AddressDataBuilder builder(){
+        return new AddressDataBuilder();
     }
 
     public int getBuildingNumber() {

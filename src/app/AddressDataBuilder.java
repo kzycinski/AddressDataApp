@@ -1,7 +1,3 @@
-/**
- *@author Krystian Życiński
- */
-
 package app;
 
 import java.util.Objects;
@@ -9,9 +5,15 @@ import java.util.Optional;
 import java.util.OptionalInt;
 
 /**
- *Builder class for AddressData.
+ *@author Krystian Życiński
+ *
+ * Builder class for AddressData.
+ * Building number has to be greater than 0
+ * City name has to start with capital letter
+ * Postal code has to be in XX-XXX format
+ * Every field has to be initialized
  * After calling build() method you can still use this building object.
- * However calling build() method again on the same data produces diffrent Object.
+ * However calling build() method again on the same data produces different Object.
  */
 public class AddressDataBuilder {
     private OptionalInt buildingNumber = OptionalInt.empty();

@@ -1,6 +1,3 @@
-/**
- * @author Krystian Życiński
- */
 package app;
 
 import java.util.InputMismatchException;
@@ -16,22 +13,24 @@ public class Main {
         System.out.println("Insert street: ");
         String street = scanner.nextLine();
         System.out.println("Insert building number: ");
+        int buildingNumber = 0;
         try {
-            int buildingNumber = scanner.nextInt();
-            try {
-                AddressData addressData = new AddressDataBuilder()
-                        .withCity(city)
-                        .withPostalCode(postalCode)
-                        .withBuildingNumber(buildingNumber)
-                        .withStreet(street)
-                        .build();
-                System.out.println("AddressData object created successfully!");
-                System.out.println(addressData);
-            } catch (NullPointerException | IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+            buildingNumber = scanner.nextInt();
         } catch (InputMismatchException e) {
             System.out.println("Wrong building number.");
         }
+        try {
+            AddressData addressData = AddressData.builder()
+                    .withCity(city)
+                    .withPostalCode(postalCode)
+                    .withBuildingNumber(buildingNumber)
+                    .withStreet(street)
+                    .build();
+            System.out.println("AddressData object created successfully!");
+            System.out.println(addressData);
+        } catch (NullPointerException | IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }
